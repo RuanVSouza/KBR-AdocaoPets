@@ -91,33 +91,32 @@ public class AdminService
         return null; // Ou outra lógica para tratar o caso em que o administrador não foi encontrado
     }
 
-    
+    public async Task DeletarAdmin(int id)
+    {
+        var admin = await _context.Admin.FindAsync(id);
+
+        if (admin == null)
+        {
+            // O administrador não existe
+            return;
+        }
+
+        try
+        {
+            _context.Admin.Remove(admin);
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Ocorreu um erro ao excluir o administrador.", ex);
+        }
+    }
+
 
     
-
-    // public async Task EditarAdmin(Admin admin)
-    // {
-    //     // Buscar o administrador existente no banco de dados
-    //     var adminExistente = await _context.Admin.FindAsync(admin.Id);
-    //
-    //     if (adminExistente != null)
-    //     {
-    //         adminExistente.Nome = admin.Nome;
-    //         adminExistente.Email = admin.Email;
-    //         adminExistente.Senha = admin.Senha;
-    //         adminExistente.ConfirmaSenha = admin.ConfirmaSenha;
-    //
-    //         await _context.SaveChangesAsync();
-    //     }
-    //     else
-    //     {
-    //         throw new InvalidOperationException("Administrador não encontrado no banco de dados.");
-    //     }
-    // }
     
     public async Task Atualizar(Admin obj)
     {
-        bool hasAny = await _context.Admin.AnyAsync(x => x.Id == obj.Id);
         _context.Admin.Update(obj);
         await _context.SaveChangesAsync();
     }

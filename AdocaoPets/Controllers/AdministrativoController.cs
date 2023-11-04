@@ -42,11 +42,13 @@ namespace AdocaoPets.Controllers
             return Task.FromResult<IActionResult>(RedirectToAction("Painel"));
         }
 
-        public async Task<IActionResult> Painel()
-        {  
+        public async Task<IActionResult> Painel(int id)
+        {
             var admins = await _adminService.BuscandoAdmin();
             return View(admins);
         }
+        
+        
 
         public async Task<IActionResult> RecuperarSenha()
         {
@@ -99,10 +101,8 @@ namespace AdocaoPets.Controllers
         //     return View();
         // }
         
-        [HttpGet]
         public async Task<IActionResult> Editar(int id)
         {
-            Admin ad = await _adminService.FindByIdAsync(id);
             Admin email = await _adminService.BuscarEmailAdmin();
             Admin adminResult = await _adminService.BuscarNomeAdmin();
 
@@ -117,21 +117,8 @@ namespace AdocaoPets.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(AdminViewModel adminViewModel)
+        public async Task<IActionResult> Editar(Admin admin)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(adminViewModel); // Retorna a view com o modelo se houver erros de validação
-            }
-
-            // Converta AdminViewModel para Admin antes de atualizar
-            var admin = new Admin
-            {
-                Nome = adminViewModel.Nome,
-                Email = adminViewModel.Email,
-                // Outros campos, se necessário
-            };
-
             await _adminService.Atualizar(admin);
             return RedirectToAction("Painel");
         }
