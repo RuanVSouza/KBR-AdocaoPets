@@ -1,0 +1,9 @@
+Ola, KBR TEC!
+
+Agradeço pela oportunidade e os desafios impostos, foi um projeto que me desafiou bastante e o aprendizado foi o mais importante.
+
+Gostaria de ressaltar que não conclui todos os requisitos do projeto tanto por questão de tempo quanto de conhecimentos, mas com certeza, estou bem mais preparado para os proximos desafios que vierem.
+
+De fato, foi um projeto bem completo e complexo para EU realizaer em 10 dias, fui até onde o meu intelecto me permitiu e mesmo com pesquisas, não consegui implantar algumas funcionalidades, principalmente a que eu considerava mais importante que era o Login com autenticação, tive bastante dificuldade em implantar com Identity.
+
+No ademais, gostaria de agradecer a oportunidade e estou disponivel para quaisquer duvidas!
